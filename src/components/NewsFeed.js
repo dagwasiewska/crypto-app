@@ -31,8 +31,7 @@ const NewsFeed = () => {
 
   console.log(articles);
 
-  const first7Articles = [] 
-  // articles?.slice(0,7)
+  const first7Articles = articles?.slice(0,7)
 
   return (
     <div className="news-feed">
