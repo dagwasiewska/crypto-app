@@ -2,7 +2,7 @@ import React from 'react'
 
 function Title({ children }) {
   return (
-    <h2 className="bg-gray-300">{children}</h2>
+    <h2 className="bg-pink-300 pd-30">{children}</h2>
   )
 }
 
