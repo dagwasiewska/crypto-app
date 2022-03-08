@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import Title from "../ui/Title"
 import Link from "../ui/Link"
+import CardNewsFeed from '../ui/CardNewsFeed';
 
 
 const NewsFeed = () => {
@@ -34,14 +35,14 @@ const NewsFeed = () => {
   const first7Articles = articles?.slice(0,7)
 
   return (
-    <div className="news-feed">
+   <CardNewsFeed>
       <Title>News Feed</Title>
         {first7Articles?.map((article, _index) => (
           <div key={_index}>
             {/* <a href={article.url}><p>{article.title}</p></a> */}
             <Link url={article.url}><p>{article.title}</p></Link>
           </div>))}
-    </div>
+   </CardNewsFeed>
   )
 }
 

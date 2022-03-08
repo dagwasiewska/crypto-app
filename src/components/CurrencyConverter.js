@@ -3,6 +3,7 @@ import { useState } from 'react'
 import ExchangeRate from "./ExchangeRate"
 import axios from 'axios' 
 import Title from "../ui/Title"
+import CardCurConv from '../ui/CardCurConv';
 
 
 const CurrencyConverter = () => {
@@ -40,7 +41,7 @@ const CurrencyConverter = () => {
   }
 
   return (
-    <div className="currency-converter">
+    <CardCurConv>
       <Title>Currency converter</Title>
 
       <div className="input-box">
@@ -95,7 +96,7 @@ const CurrencyConverter = () => {
         chosenPrimaryCurrency={chosenPrimaryCurrency}
         chosenSecondaryCurrency={chosenSecondaryCurrency}
       />
-    </div>
+    </CardCurConv>
   )
 }
 
