@@ -4,7 +4,7 @@ import ExchangeRate from "./ExchangeRate"
 import axios from 'axios' 
 import CardCurConv from '../ui/CardCurConv'
 import Title from "../ui/Title"
-import TBody from '../ui/TBody';
+import TBody from '../ui/TBody'
 import BtnConvert from '../ui/BtnConvert'
 
 
