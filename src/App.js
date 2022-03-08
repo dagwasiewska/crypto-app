@@ -5,7 +5,8 @@ import CurrencyConverter from "./components/CurrencyConverter";
 
 function App() {
   return (
-    <div className="app">
+    <div className="app"> 
+      Crypto Dashboard
       <CurrencyConverter />
       <NewsFeed />
       
