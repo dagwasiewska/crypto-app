@@ -2,7 +2,7 @@ import React from 'react'
 
 function TBody({ children }) {
   return (
-    <div className="bg-blue-300 rounded-lg pd-10 my-5 px-5 py-5">{children}</div>
+    <tbody className="bg-blue-300 rounded-lg pd-20 my-10 px-10 py-10">{children}</tbody>
   )
 }
 

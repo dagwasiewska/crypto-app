@@ -2,7 +2,7 @@ import React from 'react'
 
 function Title({ children }) {
   return (
-    <h2 className="bg-pink-300 pd-30 text-center rounded-lg font-bold">{children}</h2>
+    <h2 className="pd-30 text-center rounded-lg font-bold text-lg">{children}</h2>
   )
 }
 

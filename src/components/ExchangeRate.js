@@ -1,10 +1,11 @@
 import React from 'react';
+import TitleSmall from '../ui/TitleSmall';
 
 const ExchangeRate = ({exchangeRate, chosenPrimaryCurrency, chosenSecondaryCurrency}) => {
   return (
     <div className="exchange-rate">
-      <h3>Exchange rate:</h3>
-      <h1> {exchangeRate} </h1>
+      <TitleSmall>Exchange rate</TitleSmall>
+      <b> {exchangeRate} </b>
       <p> {chosenPrimaryCurrency} to {chosenSecondaryCurrency} </p>
     </div>
   )

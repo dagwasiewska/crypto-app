@@ -2,10 +2,10 @@ import React from 'react';
 import { useState } from 'react'
 import ExchangeRate from "./ExchangeRate"
 import axios from 'axios' 
-import CardCurConv from '../ui/CardCurConv'
+import Card from '../ui/Card'
 import Title from "../ui/Title"
 import TBody from '../ui/TBody'
-import BtnConvert from '../ui/BtnConvert'
+import Button from '../ui/Button';
 
 
 const CurrencyConverter = () => {
@@ -43,7 +43,7 @@ const CurrencyConverter = () => {
   }
 
   return (
-    <CardCurConv>
+    <Card additionalcss="bg-green-300">
       <Title>Currency converter</Title>
 
       <div className="input-box">
@@ -89,8 +89,8 @@ const CurrencyConverter = () => {
             </TBody>
         </table>
 
-        <BtnConvert onClick={convert}>Convert</BtnConvert>
-        <button id="convert-button" onClick={convert}>Convert</button>
+        <Button onClick={convert}>Convert</Button>
+        {/* <button id="convert-button" onClick={convert}>Convert</button> */}
 
       </div>
 
@@ -99,7 +99,7 @@ const CurrencyConverter = () => {
         chosenPrimaryCurrency={chosenPrimaryCurrency}
         chosenSecondaryCurrency={chosenSecondaryCurrency}
       />
-    </CardCurConv>
+    </Card>
   )
 }
 
