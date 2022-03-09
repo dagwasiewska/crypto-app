@@ -43,8 +43,8 @@ const CurrencyConverter = () => {
   }
 
   return (
-    <Card additionalcss="bg-green-300">
-      <Title>Currency converter</Title>
+    <Card additionalcss="bg-blue-200">
+      <Title>Currency Converter</Title>
 
       <div className="input-box">
         <table>
