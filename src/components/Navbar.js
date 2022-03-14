@@ -2,6 +2,7 @@ import React from "react";
 import Navigation from "../ui/Navigation";
 import NavigationItem from "../ui/NavigationItem";
 import { Link } from "react-router-dom"
+import Button from "../ui/Button";
 
 function Navbar() {
   return (
@@ -23,7 +24,7 @@ function Navbar() {
       </NavigationItem>
 
       <NavigationItem>
-        <Link to="/newsfeed"> Checking </Link>
+        <Button>Login</Button>
       </NavigationItem>
     </Navigation>
   );
