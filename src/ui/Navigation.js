@@ -2,8 +2,27 @@ import React from "react";
 
 function Navigation({ children }) {
   return (
-    <nav className="relative w-full flex flex-wrap items-center justify-between py-3 bg-blue-300 text-gray-500 hover:text-gray-700 focus:text-gray-700 shadow-lg">
-      <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+    // <nav classNameName="bg-blue-300 w-full border-gray-200 px-2 sm:px-4 py-5 rounded dark:bg-gray-800">
+    //   <div className="container flex flex-wrap justify-between items-center mx-auto">
+    //     <div
+    //       className="hidden w-full md:block md:w-auto"
+    //       id="mobile-menu"
+    //     >
+    //       {children}
+    //     </div>
+    //   </div>
+    // </nav>
+
+    <nav className="shadow-md w-full fixed top-0 left0">
+      <div className="md:flex bg white py-4">
+        <div>
+          <span>
+          
+          </span>
+          Crypto page 
+        </div>
+
+
         {children}
       </div>
     </nav>

@@ -1,12 +1,11 @@
 import React from 'react'
 import NewsFeed from '../components/NewsFeed'
-import Navigation from '../ui/Navigation'
+import Navbar from '../components/Navbar'
 
 function SecondPage() {
   return (
     <>
-      <Navigation />
-      <div>Second page</div>
+      <Navbar />
       <NewsFeed />
     </>
   )
