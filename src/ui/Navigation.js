@@ -1,5 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Navigation({ children }) {
   return (
@@ -19,7 +19,7 @@ function Navigation({ children }) {
       
         <div className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800">
           <span className="text-3xl text-indigo-600 mr-1 pt-2">
-          <FontAwesomeIcon icon="fa-brands fa-monero" />
+          {/* <FontAwesomeIcon icon="fa-brands fa-monero" /> */}
           </span>
           Crypto page 
         </div>

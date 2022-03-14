@@ -4,6 +4,7 @@ import NavigationItem from "../ui/NavigationItem";
 import { Link } from "react-router-dom"
 import Button from "../ui/Button";
 
+
 function Navbar() {
   return (
     <Navigation>
@@ -24,7 +25,9 @@ function Navbar() {
       </NavigationItem>
 
       <NavigationItem>
-        <Button>Login</Button>
+        <Button>
+          <Link to="/login">Login</Link>
+        </Button>
       </NavigationItem>
     </Navigation>
   );
