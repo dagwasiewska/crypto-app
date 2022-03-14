@@ -1,10 +1,11 @@
 import React from 'react'
 import Login from '../components/Login'
+import Navbar from '../components/Navbar'
 
 function Dashboard() {
   return (
    <>
-   <h1>hello</h1>
+   <Navbar />
    <Login />
    </>
     

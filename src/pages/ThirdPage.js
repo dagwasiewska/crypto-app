@@ -6,7 +6,11 @@ function ThirdPage() {
   return (
     <>
     <Navbar />
-    <CurrencyConverter />
+    <div className="flex flex-row mx-20 my-20">
+        <div className="flex flex-row mx-20 my-20 ">
+          <CurrencyConverter />
+        </div>
+      </div>
     </>
   )
 }

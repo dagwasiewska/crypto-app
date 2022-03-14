@@ -1,9 +1,8 @@
 import React from "react";
 import Navigation from "../ui/Navigation";
 import NavigationItem from "../ui/NavigationItem";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import Button from "../ui/Button";
-
 
 function Navbar() {
   return (
@@ -13,11 +12,11 @@ function Navbar() {
       </NavigationItem>
 
       <NavigationItem>
-        <Link to="/currencyconverter">CurrencyConverter</Link>
+        <Link to="/newsfeed">NewsFeed</Link>
       </NavigationItem>
 
       <NavigationItem>
-        <Link to="/newsfeed">NewsFeed</Link>
+        <Link to="/currencyconverter">CurrencyConverter</Link>
       </NavigationItem>
 
       <NavigationItem>
@@ -26,7 +25,7 @@ function Navbar() {
 
       <NavigationItem>
         <Button>
-          <Link to="/login">Login</Link>
+          <Link to="/dashboard">Login</Link>
         </Button>
       </NavigationItem>
     </Navigation>

@@ -1,15 +1,15 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 
 
 function Login() {
-  const [token, setToken] = useState();
+  // const [token, setToken] = useState();
 
-  if(!token) {
-    return <Login setToken={setToken} />
-  }
+  // if(!token) {
+  //   return <Login setToken={setToken} />
+  // }
   return (
-    <div className="login-wrapper flex flex-col items-center bg-indigo-600 px-10 py-10">
+    <div className="login-wrapper flex flex-col items-center bg-indigo-600 w-full px-10 py-20 mt-20 my-20">
       <h1 className="text-white text-center text-xl py-5">Please log in </h1>
       <form>
         <label>
