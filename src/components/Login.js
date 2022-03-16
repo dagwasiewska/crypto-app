@@ -1,33 +1,41 @@
 import React from "react";
 import { useState } from "react";
 import PropTypes from 'prop-types';
-
+import { useHistory } from 'react-router-dom';
 
 async function loginUser(credentials) {
-  return fetch('http://localhost:8080/login', {
+  return await fetch('http://localhost:8080/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
+  }).then(data => data.json())
  }
  
 
 function Login({ setToken }) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState('');
+  const history = useHistory();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
+    
+    const loginResponse = await loginUser({
       username,
       password
-    });
-    console.log(token)
-    setToken(token);
-    window.location.reload();
+    })
+    console.log(loginResponse.token)
+    if (loginResponse.token) {
+      const token = loginResponse.token
+      setToken(token);
+      history.push('/');
+    }
+    if (loginResponse.errorMessage) {
+      setError(loginResponse.errorMessage)
+    }
   }
 
   return (
@@ -45,6 +53,7 @@ function Login({ setToken }) {
         <div>
           <button className="text-black bg-white items-center mx-10 my-5 px-5 py-5" type="submit">Submit</button>
         </div>
+        <label>{error}</label>
       </form>
     </div>
   );

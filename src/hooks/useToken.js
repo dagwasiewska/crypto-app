@@ -3,10 +3,13 @@ import { useState } from 'react'
 function useToken() {
 
   const getToken = () => {
+    // sessionStorage <- only lives as long as the browser (Session) is open
+    // localStorage <- lives even when the session is closed
     // const tokenString = sessionStorage.getItem('token');
     const tokenString = localStorage.getItem('token');
     const userToken = JSON.parse(tokenString);
-    return userToken?.token
+
+    return userToken
   };
 
   const [token, setToken] = useState(getToken());
