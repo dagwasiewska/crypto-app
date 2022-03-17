@@ -1,14 +1,9 @@
 import React from 'react'
 import NavigationItem from './NavigationItem'
-import fontawesome from '@fortawesome/fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInbox } from '@fortawesome/free-solid-svg-icons'
-
 
 function SideNav() {
-  fontawesome.library.add(faInbox);
   return (
-  
     <aside className="w-64 py- pl-0" aria-label="Sidebar">
       <div className="h-screen py-10 rounded my-32  px-3 bg-gray-50 bg-gray-200">
        <NavigationItem />

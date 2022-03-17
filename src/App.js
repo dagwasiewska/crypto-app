@@ -8,39 +8,42 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./components/Login";
 import useToken from "./hooks/useToken";
 import Logged from "./pages/Logged";
+import IconProvider from "./providers/IconProvider";
 
 function App() {
 
   const { setToken } = useToken()
 
   return (
-    <div className="app">
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            <Homepage />
-          </Route>
-          <Route exact path="/newsfeed">
-            <SecondPage />
-          </Route>
-          <Route exact path="/profile">
-            <Logged />
-          </Route>
-          <Route exact path="/currencyconverter">
-            <ThirdPage />
-          </Route>
-          <Route exact path="/both">
-            <FourthPage />
-          </Route>
-          <Route exact path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route exact path="/login">
-            <Login setToken={setToken} />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <IconProvider>
+      <div className="app">
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              <Homepage />
+            </Route>
+            <Route exact path="/newsfeed">
+              <SecondPage />
+            </Route>
+            <Route exact path="/profile">
+              <Logged />
+            </Route>
+            <Route exact path="/currencyconverter">
+              <ThirdPage />
+            </Route>
+            <Route exact path="/both">
+              <FourthPage />
+            </Route>
+            <Route exact path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route exact path="/login">
+              <Login setToken={setToken} />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </div>
+    </IconProvider>
   );
 }
 
