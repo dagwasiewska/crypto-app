@@ -7,6 +7,7 @@ import FourthPage from "./pages/FourthPage";
 import Dashboard from "./pages/Dashboard";
 import Login from "./components/Login";
 import useToken from "./hooks/useToken";
+import Logged from "./pages/Logged";
 
 function App() {
 
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route exact path="/newsfeed">
             <SecondPage />
+          </Route>
+          <Route exact path="/profile">
+            <Logged />
           </Route>
           <Route exact path="/currencyconverter">
             <ThirdPage />

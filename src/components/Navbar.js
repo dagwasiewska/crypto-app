@@ -6,6 +6,7 @@ import Button from "../ui/Button";
 import useToken from "../hooks/useToken";
 import { useHistory } from 'react-router-dom';
 
+
 function Navbar() {
   const { token } = useToken()
   const history = useHistory()
