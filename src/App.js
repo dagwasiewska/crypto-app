@@ -8,7 +8,6 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./components/Login";
 import useToken from "./hooks/useToken.js";
 import Logged from "./pages/Logged";
-import IconProvider from "./providers/IconProvider";
 import OsDetectionProvider from "./providers/OsDetectionProvider";
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
 
   return (
     <OsDetectionProvider>
-      <IconProvider>
         <div className="app">
           <BrowserRouter>
             <Switch>
@@ -45,7 +43,6 @@ function App() {
             </Switch>
           </BrowserRouter>
         </div>
-      </IconProvider>
     </OsDetectionProvider>
   );
 }
