@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import ExchangeRate from "./ExchangeRate"
 import axios from 'axios' 
 import Card from '../ui/Card'
@@ -9,8 +9,6 @@ import Button from '../ui/Button';
 import {
   ApolloClient,
   InMemoryCache,
-  ApolloProvider,
-  useQuery,
   gql
 } from "@apollo/client";
 
@@ -18,61 +16,71 @@ import {
 const CurrencyConverter = () => {
     const currencies = ['BTC', 'ETH', 'USD', 'XRP', 'LPC', 'ADA']
     const [chosenPrimaryCurrency, SetChosenPrimaryCurrency] = useState('BTC')
-  const [chosenSecondaryCurrency, SetChosenSecondaryCurrency] = useState('BTC')
-  const [amount, setAmount] = useState(1)
-  const [exchangeRate, setExchangeRate] = useState(0)
-  const [result, setResult] = useState(0)
+    const [chosenSecondaryCurrency, SetChosenSecondaryCurrency] = useState('BTC')
+    const [amount, setAmount] = useState(1)
+    const [exchangeRate, setExchangeRate] = useState(0)
+    const [result, setResult] = useState(0)
+    const [response, setResponse] = useState()
 
-  console.log(amount)
-
-  // copied axios request 
-  const convert = () => {
-
-    const options = {
-      method: 'GET',
-      url: 'https://alpha-vantage.p.rapidapi.com/query',
-      params: {
-        from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency
-      },
-      headers: {
-        'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com',
-        'x-rapidapi-key': 'e3999d5757msh74ea6bad084da42p18bcd1jsn88a5ceb22f7d'
-      }
-    }
-    
-    axios.request(options).then((response) => {
-      console.log(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'])
-      setExchangeRate(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'])
-      setResult(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'] * amount)
-    }).catch((error) => {
-      console.error(error)
+    const client = new ApolloClient({
+      uri: 'http://localhost:3000/shop-api',
+      cache: new InMemoryCache()
     })
+    // const client = ...
+
+  const fetchData = () => {
+      client.query({
+        query: gql`
+          query {
+            products(options: {
+              take: 3
+            }) {
+              items {
+                id
+                name
+                languageCode
+              }
+            }
+          }
+        `
+      }).then(responseData => {
+        setResponse(responseData)
+      })
   }
 
-  const client = new ApolloClient({
-    uri: 'http://localhost:3000/shop-api',
-    cache: new InMemoryCache()
-  });
+    useEffect(() => {
+      // only run once at the beginning
+      fetchData()
+    }, [])
 
-  // const client = ...
+    useEffect(() => {
+      console.log(response)
+    }, [response])
 
-client
-.query({
-  query: gql`
-  query {
-    products(options: {
-      take: 3
-    }) {
-      items {
-        id
-        name
-        languageCode
+    console.log(amount)
+
+    // copied axios request 
+    const convert = () => {
+      const options = {
+        method: 'GET',
+        url: 'https://alpha-vantage.p.rapidapi.com/query',
+        params: {
+          from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency
+        },
+        headers: {
+          'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com',
+          'x-rapidapi-key': 'e3999d5757msh74ea6bad084da42p18bcd1jsn88a5ceb22f7d'
+        }
       }
-    }
+      
+      axios.request(options).then((response) => {
+        console.log(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'])
+        setExchangeRate(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'])
+        setResult(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'] * amount)
+      }).catch((error) => {
+        console.error(error)
+      })
   }
-  `
-})
-.then(result => console.log(result));
 
   return (
     <Card additionalcss="bg-blue-200">
