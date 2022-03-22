@@ -1,0 +1,23 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "run:server": "node ./src/index.js",
+    "run:worker": "node ./src/index-worker.js",
+    "start": "concurrently npm:run:*",
+    "migration:generate": "node migration generate",
+    "migration:run": "node migration run",
+    "migration:revert": "node migration revert"
+  },
+  "dependencies": {
+    "@vendure/admin-ui-plugin": "1.5.0",
+    "@vendure/asset-server-plugin": "1.5.0",
+    "@vendure/core": "1.5.0",
+    "@vendure/email-plugin": "1.5.0",
+    "better-sqlite3": "7.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "7.0.0"
+  }
+}

@@ -6,6 +6,13 @@ import Card from '../ui/Card'
 import Title from "../ui/Title"
 import TBody from '../ui/TBody'
 import Button from '../ui/Button';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql
+} from "@apollo/client";
 
 
 const CurrencyConverter = () => {
@@ -41,6 +48,31 @@ const CurrencyConverter = () => {
       console.error(error)
     })
   }
+
+  const client = new ApolloClient({
+    uri: 'http://localhost:3000/shop-api',
+    cache: new InMemoryCache()
+  });
+
+  // const client = ...
+
+client
+.query({
+  query: gql`
+  query {
+    products(options: {
+      take: 3
+    }) {
+      items {
+        id
+        name
+        languageCode
+      }
+    }
+  }
+  `
+})
+.then(result => console.log(result));
 
   return (
     <Card additionalcss="bg-blue-200">

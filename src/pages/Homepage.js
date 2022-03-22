@@ -1,17 +1,20 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-
-
-
+import React from "react";
+import Navbar from "../components/Navbar";
 
 function Homepage() {
   return (
     <>
-      <Navbar/>
-      
+      <Navbar />
+      <div className="w-full h-full mt-32 mx-5 my-5 bg-blue-100 rounded py-32 self-center">
+   
+      </div>
+      <div className="w-full h-full mt-32 mx-5 my-5 bg-blue-100 rounded py-32 self-center"></div>
+      <div className="w-full h-full mt-32 mx-5 my-5 bg-blue-100 rounded py-32 self-center"></div>
+      <div className="w-full mt-32 mx-5 my-5 bg-blue-100 rounded py-32 self-center">
+        
+      </div>
     </>
-
-  )
+  );
 }
 
-export default Homepage
+export default Homepage;
