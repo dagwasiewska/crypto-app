@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+import Card from "../ui/Card";
 
 function Products() {
   const [productImageUrls, setProductImageUrls] = useState([]);
@@ -17,11 +18,10 @@ function Products() {
       .query({
         query: gql`
           query {
-            products(options: { take: 3 }) {
+            products(options: { take: 1 }) {
               items {
                 id
                 name
-                description
                 assets {
                   source
                 }
@@ -49,16 +49,21 @@ function Products() {
         setProductImageUrls(productImagesWithoutNull);
       });
   };
+
+  
   useEffect(() => {
     getProducts();
+    // get Product descriptions
   }, []);
 
   return (
+    <Card additionalcss="my-20 py-32">
     <div className="Inventory">
       {productImageUrls.map(url => {
         return <img key={url} src={url}></img>
       })}
     </div>
+    </Card>
   );
 }
 
