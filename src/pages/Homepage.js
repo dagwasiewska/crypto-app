@@ -1,7 +1,6 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar"
 import Products from "../components/Products";
-import ProductCard from "../ui/ProductCard";
 
 function Homepage() {
   return (

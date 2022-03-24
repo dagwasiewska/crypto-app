@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import Card from "../ui/Card";
-import Title from "../ui/Title";
-import Descriptions from "./Descriptions";
-import { Link } from "react-router-dom";
+import Link from "../ui/Link";
 
 function Products() {
-  const [productImageUrls, setProductImageUrls] = useState([]);
+  const [produkty, setProdukty] = useState([]);
 
   const client = new ApolloClient({
     uri: "http://localhost:3000/shop-api",
     cache: new InMemoryCache(),
   });
 
-  // when I have client -> then no need to fetch again because url is already there
-  //first method client.query()
-  //   then I pass object so ...({query: ....})
-  const getProducts = () => {
+  const getProdukty = () => {
     client
       .query({
         query: gql`
           query {
-            products(options: { take: 1 }) {
+            products(options: { take: 3 }) {
               items {
                 id
+                description
                 name
+                variants {
+                  productId
+                  price
+                }
                 assets {
                   source
                 }
@@ -34,42 +34,49 @@ function Products() {
         `,
       })
       .then((response) => {
-        console.log(response.data.products.items)
-        // map response to an array of images 'source'
-        const productSources = response.data.products.items.map((product) => {
-          if (product.assets.length > 0) {
-            return product.assets[0].source;
-          }
-
-          return null;
+        console.log(response.data.products);
+        const productData = response.data.products.items.map((produkt) => {
+          // odpowiedz z API odnosnie danych, items -> pozniej iteruje 'map' zeby uzyskac nowa tablice
+          return {
+            id: produkt.id,
+            name: produkt.name,
+            description: produkt.description,
+            imageUrl: produkt.assets[0].source,
+            price: produkt.variants[0].price
+            // obiekty zawsze w dziwnych nawiasach
+          };
         });
-
-        // filtering out null from the productImages array
-        const productImagesWithoutNull = productSources.filter(
-          (image) => image !== null
-        );
-        // console.log(productImagesWithoutNull)
-        setProductImageUrls(productImagesWithoutNull);
+        console.log(productData);
+        setProdukty(productData);
       });
   };
 
-  
   useEffect(() => {
-    getProducts();
-    // get Product descriptions
-  }, []);
+    getProdukty()
+  }, [])
+
+  // usunac products.js i description.js jest teraz lista produktow czyli name, description, itd..
+
+  // Prices
 
   return (
-    <div className="px-10 my-10 py-32 border-solid">
-    <Title>Product name</Title>
-    <div className="Inventory">
-      {productImageUrls.map(url => {
-        return <img key={url} src={url}></img>
+    <>
+      {produkty.map((produkt) => {
+        return (
+          <Card
+            key={produkt.id}
+            additionalcss="w-full text-center bg-white self-center my-0 mt-8"
+          >
+            <div>{produkt.name}</div>
+            <img src={produkt.imageUrl}></img>
+            <div>Price: {produkt.price} USD</div>
+
+            <Link>CLICK HERE</Link>
+          </Card>
+        );
       })}
-    </div>
-    <Descriptions />
-    </div>
+    </>
   );
 }
 
-export default Products;
+export default Products
