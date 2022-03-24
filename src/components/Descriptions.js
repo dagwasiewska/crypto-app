@@ -4,49 +4,73 @@ import Card from "../ui/Card";
 import Link from "../ui/Link";
 
 function Descriptions() {
-  const [opisyPodZdj, setOpisyPodZdj] = useState([]);
+  const [produkty, setProdukty] = useState([]);
 
   const client = new ApolloClient({
     uri: "http://localhost:3000/shop-api",
     cache: new InMemoryCache(),
   });
 
-  const getDescriptions = () => {
+  const getProdukty = () => {
     client
       .query({
         query: gql`
           query {
             products(options: { take: 3 }) {
               items {
+                id
                 description
+                name
+                assets {
+                  source
+                }
               }
             }
           }
         `,
       })
       .then((response) => {
-        console.log(response.data.products.items.description);
-        const something = response.data.products.items.map((items) => {
-          if (items.description && true) {
-            return items.description.substring(0, 30);
-          }
+        console.log(response.data.products);
+        const productData = response.data.products.items.map((produkt) => {
+          // odpowiedz z API odnosnie danych, items -> pozniej iteruje 'map' zeby uzyskac nowa tablice
+          return {
+            id: produkt.id,
+            name: produkt.name,
+            description: produkt.description,
+            imageUrl: produkt.assets[0].source,
+            // obiekty zawsze w dziwnych nawiasach
+          };
         });
-
-        setOpisyPodZdj(something);
+        console.log(productData);
+        setProdukty(productData);
       });
   };
 
   useEffect(() => {
-    getDescriptions();
-  });
+    getProdukty();
+  }, []);
+
+
+  // usunac products.js i description.js jest teraz lista produktow czyli name, description, itd..
+
+  // Prices
 
   return (
-    <Card additionalcss="w-full text-center bg-white self-center my-0">
-      <div className="mx-auto w-full">
-        <div>{opisyPodZdj}</div>
-        <Link>CLICK HERE</Link>
-      </div>
-    </Card>
+    <>
+      {produkty.map((produkt) => {
+        return (
+          <Card
+            key={produkt.id}
+            additionalcss="w-full text-center bg-white self-center my-0"
+          >
+            <div>{produkt.name}</div>
+            <img src={produkt.imageUrl}></img>
+
+            <Link>CLICK HERE</Link>
+          </Card>
+        );
+      })}
+    </>
   );
 }
 

@@ -8,7 +8,6 @@ function Homepage() {
     <>
       <Navbar />
       <Products />
-      <ProductCard />
       {/* <div className="w-full h-full mt-32 mx-5 my-5 bg-blue-100 rounded py-32 self-center">
    
       </div> */}
