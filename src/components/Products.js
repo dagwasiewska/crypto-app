@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import Card from "../ui/Card";
+import Title from "../ui/Title";
+import Descriptions from "./Descriptions";
+import { Link } from "react-router-dom";
 
 function Products() {
   const [productImageUrls, setProductImageUrls] = useState([]);
@@ -45,7 +48,7 @@ function Products() {
         const productImagesWithoutNull = productSources.filter(
           (image) => image !== null
         );
-        console.log(productImagesWithoutNull)
+        // console.log(productImagesWithoutNull)
         setProductImageUrls(productImagesWithoutNull);
       });
   };
@@ -57,13 +60,15 @@ function Products() {
   }, []);
 
   return (
-    <Card additionalcss="my-20 py-32">
+    <div className="px-10 my-10 py-32 border-solid">
+    <Title>Product name</Title>
     <div className="Inventory">
       {productImageUrls.map(url => {
         return <img key={url} src={url}></img>
       })}
     </div>
-    </Card>
+    <Descriptions />
+    </div>
   );
 }
 
