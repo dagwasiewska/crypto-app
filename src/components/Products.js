@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import Card from "../ui/Card";
 import Link from "../ui/Link";
+import Title from "../ui/Title";
 
 function Products() {
   const [produkty, setProdukty] = useState([]);
@@ -42,7 +43,7 @@ function Products() {
             name: produkt.name,
             description: produkt.description,
             imageUrl: produkt.assets[0].source,
-            price: produkt.variants[0].price
+            price: produkt.variants[0].price,
             // obiekty zawsze w dziwnych nawiasach
           };
         });
@@ -52,8 +53,8 @@ function Products() {
   };
 
   useEffect(() => {
-    getProdukty()
-  }, [])
+    getProdukty();
+  }, []);
 
   // usunac products.js i description.js jest teraz lista produktow czyli name, description, itd..
 
@@ -65,9 +66,9 @@ function Products() {
         return (
           <Card
             key={produkt.id}
-            additionalcss="w-full text-center bg-white self-center my-0 mt-8"
+            additionalcss="w-full text-center bg-white self-center my-0 mt-32"
           >
-            <div>{produkt.name}</div>
+            <Title>{produkt.name}</Title>
             <img src={produkt.imageUrl}></img>
             <div>Price: {produkt.price} USD</div>
 
@@ -79,4 +80,4 @@ function Products() {
   );
 }
 
-export default Products
+export default Products;
