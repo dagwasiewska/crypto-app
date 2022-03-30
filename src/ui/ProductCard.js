@@ -1,19 +1,12 @@
-import React from 'react'
-import Card from './Card'
-import Products from '../components/Products'
-import Descriptions from '../components/Descriptions'
-import Title from './Title'
+import React from "react"
 
+import Products from "../components/Products"
 
 function ProductCard() {
   return (
     <>
-
-    
-   <Products />
-  
+      <Products />
     </>
-    
   )
 }
 

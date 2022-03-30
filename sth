@@ -73,3 +73,38 @@
 // }
 
 // export default Products;
+
+
+
+
+
+
+
+
+
+// import React from "react"
+// import ReactPaginate from "react-paginate"
+// import PageNumber from "../ui/PageNumber"
+
+// function Paginate() {
+//   const handlePageClick = (data) => {
+//     console.log(data.selected)
+//   }
+
+//   return (
+//     <>
+//       <ReactPaginate
+//         previousLabel={"previous"}
+//         nextLabel={"next"}
+//         breakLabel={"..."}
+//         pageCount={10}
+//         marginPagesDisplayed={2}
+//         pageRangeDisplayed={3}
+//         onPageChange={handlePageClick}
+//         pageLinkClassName={"page-link"}
+//       />
+//     </>
+//   )
+// }
+
+// export default Paginate

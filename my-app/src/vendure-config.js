@@ -32,7 +32,7 @@ const config = {
             password: 'superadmin',
         },
         cookieOptions: {
-          secret: process.env.COOKIE_SECRET || 'cookie-secret',
+          secret: process?.env.COOKIE_SECRET || 'cookie-secret',
         },
     },
     dbConnectionOptions: {
