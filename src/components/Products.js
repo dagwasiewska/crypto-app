@@ -74,11 +74,11 @@ function Products() {
             return (
               <Card
                 key={produkt.id}
-                additionalcss="w-full text-center bg-white self-center my-0 mt-32"
+                additionalcss="w-96 h-96 mt-36 grid gap-4 "
               >
                 <Title>{produkt.name}</Title>
-                <img src={produkt.imageUrl}></img>
-                <div>Price: {produkt.price} USD</div>
+                <img className="max-w-xs max-h-40 mx-auto" src={produkt.imageUrl}></img>
+                <div className="mx-auto text-bold">Price: {produkt.price} USD</div>
 
                 <Link>CLICK HERE</Link>
               </Card>
