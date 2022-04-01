@@ -40,6 +40,10 @@ function App() {
               <Route exact path="/login">
                 <Login setToken={setToken} />
               </Route>
+              <Route exact path="/product/:id">
+                <SecondPage />
+              </Route>
+
             </Switch>
           </BrowserRouter>
         </div>

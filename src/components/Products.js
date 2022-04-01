@@ -19,7 +19,9 @@ function Products() {
     cache: new InMemoryCache(),
   })
 
+  // zamiast take i skip zamienic z id jak bede wrzucac produkty, jesli w liczbie mnogiej nie bedzie dzialac to w pojedynczej sprobowac 
   const getProdukty = (take, skip) => {
+    console.log(take, skip, '...')
     client
       .query({
         query: gql`
@@ -65,26 +67,32 @@ function Products() {
     getProdukty(itemsPerPage, 0)
   }, [])
 
-
   function Items({ produkty }) {
     return (
-      <>
+      <div className="grid grid-cols-4 gap-4">
         {produkty &&
           produkty.map((produkt) => {
             return (
-              <Card
-                key={produkt.id}
-                additionalcss="w-96 h-96 mt-36 grid gap-4 "
-              >
-                <Title>{produkt.name}</Title>
-                <img className="max-w-xs max-h-40 mx-auto" src={produkt.imageUrl}></img>
-                <div className="mx-auto text-bold">Price: {produkt.price} USD</div>
+              <div className="space-x-4">
+                <Card
+                  key={produkt.id}
+                  additionalcss="h-96 mt-36 grid gap-4 bg-purple-100 mr-10"
+                >
+                  <Title>{produkt.name}</Title>
+                  <img
+                    className="max-w-xs max-h-40 mx-auto"
+                    src={produkt.imageUrl}
+                  ></img>
+                  <div className="mx-auto text-bold">
+                    Price: {produkt.price} USD
+                  </div>
 
-                <Link>CLICK HERE</Link>
-              </Card>
+                  <Link>CLICK HERE</Link>
+                </Card>
+              </div>
             )
           })}
-      </>
+      </div>
     )
   }
 
@@ -94,7 +102,8 @@ function Products() {
     // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage
     console.log(`Loading items from ${itemOffset} to ${endOffset}`)
-    getProdukty(endOffset, itemOffset)
+    getProdukty(itemsPerPage, itemOffset)
+    // najpierw bylo endoffset i zamienilismy to na items perpage zeby pokazywalo te sama liczbe na stronie, wczesniej cos nie dzialalo i pokazywalo bledna liczbe produktow 
     setPageCount(Math.ceil(totalHits / itemsPerPage))
   }, [itemOffset, itemsPerPage])
 
@@ -109,12 +118,14 @@ function Products() {
 
   return (
     <>
-      <Items produkty={produkty} />
+      <Items produkty={produkty} className="space-x-4 " />
       <ReactPaginate
-        pageClassName="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        className="flex flex-wrap w-full content-center bg-blue-200 absolute mb-0 px-8 self-end"
+        pageClassName="grid grid-cols-1 py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         nextClassName="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         previousClassName="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         breakLabel="..."
+        breakClassName="py-2 px-3 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         nextLabel="next >"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}

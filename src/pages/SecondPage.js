@@ -1,7 +1,11 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import NewsFeed from "../components/NewsFeed";
+import React from "react"
+import Navbar from "../components/Navbar"
+import NewsFeed from "../components/NewsFeed"
+import { useParams } from "react-router-dom"
+
 function SecondPage() {
+  let { id } = useParams()
+  console.log(id)
   return (
     <>
       <Navbar></Navbar>
@@ -11,7 +15,7 @@ function SecondPage() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default SecondPage;
+export default SecondPage
